@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+	<!-- include the database connection configuration -->
+	<property resource="tss-core-cfg-jdbc.properties" />
+	<!-- 日志存放目录 -->
+	<property name="LOG_HOME" value="/home/hdfs/tss/run/logs" />
+	<!-- 加入JMX监控 -->
+	<jmxConfigurator />
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned by default the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 文件输出 -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/tss-core.out</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>${LOG_HOME}/daily/%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+			<pattern>%date %level [%thread] %logger{10} %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 数据库输出 -->
+	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+		<connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+			<dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+				<driverClass>${jdbc.driverClassName}</driverClass>
+				<jdbcUrl>${jdbc.url}</jdbcUrl>
+				<user>${jdbc.username}</user>
+				<password>${jdbc.password}</password>
+				<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+				<initialPoolSize>1</initialPoolSize>
+				<!--连接池中保留的最小连接数。 -->
+				<minPoolSize>1</minPoolSize>
+				<!--连接池中保留的最大连接数。Default: 15 -->
+				<maxPoolSize>20</maxPoolSize>
+				<!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+				<maxIdleTime>60</maxIdleTime>
+				<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+				<acquireIncrement>5</acquireIncrement>
+				<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+				<idleConnectionTestPeriod>60</idleConnectionTestPeriod>
+			</dataSource>
+		</connectionSource>
+	</appender>
+	<!-- 输出用户操作日志与系统日志到数据库中 -->
+	<logger name="com.topsec.tss.platform.service.ApplicationLoggingService" level="INFO">
+		<appender-ref ref="DB" />
+	</logger>
+	<!-- -->
+	<logger name="org.quartz.core.QuartzSchedulerThread" level="ERROR" />
+	<logger name="org.mybatis.spring.SqlSessionFactoryBean" level="ERROR" />
+	<logger name="org.quartz.utils.UpdateChecker" level="ERROR" />
+	<!-- 确认LOGGING系统的输出使用规则 -->
+	<root level="ALL">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
+
