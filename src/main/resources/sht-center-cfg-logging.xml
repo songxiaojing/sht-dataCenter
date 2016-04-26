@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration debug="true">
 	<!-- include the database connection configuration -->
-	<property resource="tss-core-cfg-jdbc.properties" />
+	<property resource="sht-center-cfg-jdbc.properties" />
+	<property resource="sht-center-cfg-env.properties" />
 	<!-- 日志存放目录 -->
-	<property name="LOG_HOME" value="/home/hdfs/tss/run/logs" />
+	<property name="LOG_HOME" value="${log.cfg.file.path}" />
 	<!-- 加入JMX监控 -->
 	<jmxConfigurator />
 	<!-- 控制台输出 -->

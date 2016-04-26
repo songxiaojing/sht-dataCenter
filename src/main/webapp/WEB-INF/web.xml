@@ -4,7 +4,28 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
     <display-name>Archetype Created Web Application</display-name>
-    <!-- spark context-->
+    <!-- below listeners must keep the order-->
+    <!--#1 listeners for platform logging -->
+    <listener>
+        <listener-class>com.byw.stock.house.data.center.web.listeners.AppLogListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>app.cfg.log.path</param-name>
+        <param-value>sht-center-cfg-logging.xml</param-value>
+    </context-param>
+    <!--#2 listeners for Session-->
+    <listener>
+        <listener-class>com.byw.stock.house.data.center.web.listeners.AppSessionListener</listener-class>
+    </listener>
+    <!--#3 listeners for Platform services-->
+    <listener>
+        <listener-class>com.byw.stock.house.data.center.web.listeners.AppPlatformServiceListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>app.cfg.service.path</param-name>
+        <param-value>sht-center-cfg-service.xml</param-value>
+    </context-param>
+    <!--#4 listeners for spring context -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -12,16 +33,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:sht-center-cfg-spring-context.xml</param-value>
     </context-param>
-    <!-- Authentication filter -->
-    <filter>
-        <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>com.topsec.tss.core.web.filter.AuthenticationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <!-- encoding filter setting-->
+    <!-- encoding filters setting-->
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -38,7 +50,56 @@
         <filter-name>EncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
+    <!-- Authentication filters -->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.byw.stock.house.data.center.web.filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!-- struts framework setting-->
-
+    <filter>
+        <filter-name>StrutsCleanUpFilter</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <init-param>
+            <param-name>actionPackages</param-name>
+            <param-value>com.byw.stock.house.data.center.web.controllers</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>StrutsCleanUpFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    <icon>
+        <small-icon>/favicon.ico</small-icon>
+        <large-icon>/favicon.ico</large-icon>
+    </icon>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/401.html</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.html</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

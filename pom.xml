@@ -145,6 +145,11 @@
             <artifactId>netty-all</artifactId>
             <version>4.0.36.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.2</version>
+        </dependency>
         <!-- Case Test Framework Junit-->
         <dependency>
             <groupId>junit</groupId>
