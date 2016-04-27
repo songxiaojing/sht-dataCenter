@@ -8,12 +8,12 @@
 	<context:property-placeholder location="classpath:sht-center-cfg-jdbc.properties" />
 
 	<!-- 系统数据源配置 -->
-	<!-- 配置dataSource 当前操作的安全事件数据库数据源 -->
-	<bean id="dataSource" destroy-method="close" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${jdbc.driverClassName}" />
-		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
+	<!-- 配置dataSource STOCK 数据库数据源 -->
+	<bean id="stockDataSource" destroy-method="close" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.stock.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.stock.url}" />
+		<property name="user" value="${jdbc.stock.username}" />
+		<property name="password" value="${jdbc.stock.password}" />
 		<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
 		<property name="initialPoolSize" value="1" />
 		<!--连接池中保留的最小连接数。 -->
@@ -27,12 +27,12 @@
 		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
 		<property name="idleConnectionTestPeriod" value="60" />
 	</bean>
-	<!-- 配置安全事件历史数据库数据源 -->
-	<bean id="historyDataSource" destroy-method="close" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${jdbc.h.driverClassName}" />
-		<property name="jdbcUrl" value="${jdbc.h.url}" />
-		<property name="user" value="${jdbc.h.username}" />
-		<property name="password" value="${jdbc.h.password}" />
+	<!-- TRADING数据库数据源 -->
+	<bean id="tradingDataSource" destroy-method="close" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.trading.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.trading.url}" />
+		<property name="user" value="${jdbc.trading.username}" />
+		<property name="password" value="${jdbc.trading.password}" />
 		<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
 		<property name="initialPoolSize" value="1" />
 		<!--连接池中保留的最小连接数。 -->
@@ -47,41 +47,41 @@
 		<property name="idleConnectionTestPeriod" value="60" />
 	</bean>
 
-	<!-- Mybatis 配置段 current数据源配置 -->
+	<!-- Mybatis 配置段 STOCK数据源配置 -->
 	<!-- SessionFactory -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:com/topsec/tss/core/web/resource/mapper/*.xml" />
+	<bean id="stockSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="stockDataSource" />
+		<property name="mapperLocations" value="classpath*:com/byw/stock/house/track/module/stock/mapper/*.xml" />
 	</bean>
 	<!-- 事务配置 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="stockTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="stockDataSource" />
 	</bean>
 	<!-- 自动描述map.xml文件 -->
-	<bean id="mybatisMapperScaner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.topsec.tss.core.web.resource.dao" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	<bean id="stockMapperScaner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.byw.stock.house.track.module.stock.dao" />
+		<property name="sqlSessionFactoryBeanName" value="stockSqlSessionFactory" />
 	</bean>
 
 	<!-- Mybatis 配置段  历史数据库数据源 -->
 	<!-- SessionFactory -->
-	<bean id="historySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="historyDataSource" />
-		<property name="mapperLocations" value="classpath*:com/topsec/tss/core/web/resource/history/mapper/*.xml" />
+	<bean id="tradingSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="tradingDataSource" />
+		<property name="mapperLocations" value="classpath*:com/byw/stock/house/track/module/trading/mapper/*.xml" />
 	</bean>
 	<!-- 自动描述map.xml文件 -->
-	<bean id="historyMybatisMapperScaner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.topsec.tss.core.web.resource.history.dao" />
-		<property name="sqlSessionFactoryBeanName" value="historySqlSessionFactory" />
+	<bean id="tradingMapperScaner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.byw.stock.house.track.module.trading.dao" />
+		<property name="sqlSessionFactoryBeanName" value="tradingSqlSessionFactory" />
 	</bean>
 	<!-- 事务配置 -->
-	<bean id="historyTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="historyDataSource" />
+	<bean id="tradingTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="tradingDataSource" />
 	</bean>
 	
 	<!-- Struts 配置 -->
 	<!-- 分别扫描 @Controller;@Service;@Repository -->
-	<context:component-scan base-package="com.topsec.tss.core.web.ajax,com.topsec.tss.core.web.controller,com.topsec.tss.core.web.support,com.topsec.tss.core.web.resource" use-default-filters="false">
+	<context:component-scan base-package="com.byw.stock.house.data.center.web.controllers,com.byw.stock.house.data.center.web.services,com.byw.stock.house.track.module" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />

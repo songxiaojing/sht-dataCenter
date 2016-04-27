@@ -168,7 +168,7 @@ public class MessageDigestService extends AbstractMetricMBean implements IPlatfo
     }
 
     /**
-     * Computes the algorithm hash of the data and returns it as a Base64 string.
+     * Computes the algorithm hash of the module and returns it as a Base64 string.
      * 
      * @param algorithm
      * @param contents

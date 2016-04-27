@@ -55,5 +55,6 @@ public class AppLogListener implements ServletContextListener {
         Utils.setJvmEnvParameter(AppReferent.app_cfg_log_path.getValue(), sce.getServletContext().getInitParameter(AppReferent.app_cfg_log_path.getValue()));
         //Services配置文件
         Utils.setJvmEnvParameter(AppReferent.app_cfg_service_Path.getValue(), sce.getServletContext().getInitParameter(AppReferent.app_cfg_service_Path.getValue()));
+        
     }
 }

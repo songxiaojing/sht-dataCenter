@@ -185,7 +185,7 @@ public abstract class BaseController implements IController {
     }
 
     /**
-     * 取得上传文件的对象 enctype="multipart/form-data".
+     * 取得上传文件的对象 enctype="multipart/form-module".
      *
      * @param request
      * @return
@@ -269,7 +269,7 @@ public abstract class BaseController implements IController {
 //        rowsDataJSONObj.put("draw", draw);
 //        rowsDataJSONObj.put("recordsTotal", resourceCount);
 //        rowsDataJSONObj.put("recordsFiltered", resourceCount);
-//        rowsDataJSONObj.put("data", dataArray);
+//        rowsDataJSONObj.put("module", dataArray);
 //        return rowsDataJSONObj.toString();
 //    }
 

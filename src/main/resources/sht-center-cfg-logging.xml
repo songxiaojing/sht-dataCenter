@@ -3,8 +3,9 @@
 	<!-- include the database connection configuration -->
 	<property resource="sht-center-cfg-jdbc.properties" />
 	<property resource="sht-center-cfg-env.properties" />
-	<!-- 日志存放目录 -->
-	<property name="LOG_HOME" value="${log.cfg.file.path}" />
+	<!-- 日志存放目录
+	<property name="LOG_HOME" value="/home/martin/projects/stock/run/logs" />
+	-->
 	<!-- 加入JMX监控 -->
 	<jmxConfigurator />
 	<!-- 控制台输出 -->
@@ -16,10 +17,10 @@
 	</appender>
 	<!-- 文件输出 -->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_HOME}/tss-core.out</file>
+		<file>${log.cfg.file.path}/sht-center.out</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- daily rollover -->
-			<fileNamePattern>${LOG_HOME}/daily/%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>${log.cfg.file.path}/daily/%d{yyyy-MM-dd}.log</fileNamePattern>
 			<!-- keep 30 days' worth of history -->
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
@@ -52,7 +53,7 @@
 		</connectionSource>
 	</appender>
 	<!-- 输出用户操作日志与系统日志到数据库中 -->
-	<logger name="com.topsec.tss.platform.service.ApplicationLoggingService" level="INFO">
+	<logger name="${log.cfg.syslog.class}" level="INFO">
 		<appender-ref ref="DB" />
 	</logger>
 	<!-- -->

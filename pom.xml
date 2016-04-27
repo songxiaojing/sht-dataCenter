@@ -19,6 +19,17 @@
     </properties>
 
     <dependencies>
+        <!-- sht -->
+        <dependency>
+            <groupId>com.byw.stock.house.track</groupId>
+            <artifactId>sht-platform</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.byw.stock.house.track</groupId>
+            <artifactId>sht-dataModule</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!--spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -100,7 +111,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.38</version>
+            <version>5.1.35</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
