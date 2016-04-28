@@ -33,10 +33,10 @@
 	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
 		<connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
 			<dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
-				<driverClass>${jdbc.driverClassName}</driverClass>
-				<jdbcUrl>${jdbc.url}</jdbcUrl>
-				<user>${jdbc.username}</user>
-				<password>${jdbc.password}</password>
+				<driverClass>${jdbc.stock.driverClassName}</driverClass>
+				<jdbcUrl>${jdbc.stock.url}</jdbcUrl>
+				<user>${jdbc.stock.username}</user>
+				<password>${jdbc.stock.password}</password>
 				<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
 				<initialPoolSize>1</initialPoolSize>
 				<!--连接池中保留的最小连接数。 -->
@@ -57,11 +57,13 @@
 		<appender-ref ref="DB" />
 	</logger>
 	<!-- -->
-	<logger name="org.quartz.core.QuartzSchedulerThread" level="ERROR" />
 	<logger name="org.mybatis.spring.SqlSessionFactoryBean" level="ERROR" />
+	<!--
+	<logger name="org.quartz.core.QuartzSchedulerThread" level="ERROR" />
 	<logger name="org.quartz.utils.UpdateChecker" level="ERROR" />
+	-->
 	<!-- 确认LOGGING系统的输出使用规则 -->
-	<root level="ALL">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
 	</root>
