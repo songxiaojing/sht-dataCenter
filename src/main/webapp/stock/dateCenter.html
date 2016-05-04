@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>数据中心</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../plugins/bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dateCenter.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../plugins/bootstrap/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../plugins/bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../plugins/bootstrap/assets/js/html5shiv.min.js"></script>
+    <script src="../plugins/bootstrap/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar,#navbar_right_prosenal"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">数据中心</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">数据管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">股票代码同步</a></li>
+                        <li><a href="#">股票数据管理</a></li>
+                        <li><a href="#">股票数据采集</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">数据采集进度</li>
+                        <li><a href="#">数据完整度分析</a></li>
+                        <li><a href="#">数据抽样分析</a></li>
+                    </ul>
+                </li>
+                <li><a href="#about">市场分析</a></li>
+                <li><a href="#contact">综合信息</a></li>
+                <li><a href="#contact">自选个股</a></li>
+            </ul>
+            <!-- -->
+            <div id="navbar_right_prosenal" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">baiyanwei</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">设置 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">MENU_LEVEL_2</a></li>
+                            <li><a href="#">MENU_LEVEL_2</a></li>
+                            <li><a href="#">MENU_LEVEL_2</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">MENU_LEVEL_2</li>
+                            <li><a href="#">MENU_LEVEL_2</a></li>
+                            <li><a href="#">MENU_LEVEL_2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">帮助</a></li>
+                </ul>
+            </div>
+        </div><!--/.nav-collapse -->
+
+    </div>
+</nav>
+<iframe id="content" name="content" frameborder="0" src="../content.html" onload="addEventListenerForTopMenu();"></iframe>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../plugins/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="dateCenter.js"></script>
+</body>
+</html>
