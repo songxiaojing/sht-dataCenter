@@ -3,7 +3,8 @@
 /* Padding below the footer and lighter body text */
 
 body {
-    padding-bottom: 40px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
     color: #5a5a5a;
 }
 
@@ -131,4 +132,11 @@ body {
     .featurette-heading {
         margin-top: 120px;
     }
+}
+
+footer{
+    background: #c0c0c0;
+    min-height: 100px;
+    margin-top: 20px;
+    border-top:2px solid #FF6600;
 }
