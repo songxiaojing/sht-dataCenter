@@ -17,8 +17,8 @@ public class ApplicationView extends BaseController {
      * @return
      */
     public String onlineView() {
-
-        return "online";
+    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success");
+        return "success";
     }
 
 }
