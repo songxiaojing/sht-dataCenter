@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Company synchronized</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../plugins/bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../../plugins/bootstrap/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../plugins/bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../../plugins/bootstrap/assets/js/html5shiv.min.js"></script>
+    <script src="../../plugins/bootstrap/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- Begin page content -->
+<div class="container">
+    <section id="companyImportSection">
+    <div class="page-header">
+        <h3>Company Import <small>Last synchronized at 05/05/2016</small></h3>
+    </div>
+    <form class="form-horizontal" id="stockCompanyImportForm" action="test.action">
+        <div class="form-group">
+            <label for="shCompanyFile" class="col-sm-2 control-label">SH Company:</label>
+            <div class="col-sm-10">
+                <input type="file" id="shCompanyFile" name="shCompanyFile">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="szCompanyFile" class="col-sm-2 control-label">SZ Company:</label>
+            <div class="col-sm-10">
+                <input type="file" id="szCompanyFile" name="szCompanyFile">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input type="checkbox" id="isUpdateExist" name="isUpdateExists" value="true">update exists company</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Import</button>
+            </div>
+        </div>
+    </form>
+    </section>
+    <section id="companyRemoveSection">
+        <div class="page-header">
+            <h3>Company Remove</h3>
+        </div>
+        <form class="form-horizontal" id="stockCompanyRemoveForm" action="#">
+            <div class="form-group">
+                <label for="removeCompany_SH" class="col-sm-2 control-label">Remove Company:</label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input id="removeCompany_SH" name="removeCompany" type="checkbox" value="SH">
+                            SH Company <span class="badge">100</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="removeCompany_SZ" name="removeCompany" type="checkbox" value="SZ" >
+                            SZ Company <span class="badge">65</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Remove</button>
+                </div>
+            </div>
+
+
+        </form>
+
+    </section>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../plugins/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

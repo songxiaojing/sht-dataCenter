@@ -45,27 +45,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">数据中心</a>
+            <a class="navbar-brand" href="#">Stock Data Center</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">数据管理 <span class="caret"></span></a>
+                       aria-expanded="false">Data Manager<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">股票代码同步</a></li>
-                        <li><a href="#">股票数据管理</a></li>
-                        <li><a href="#">股票数据采集</a></li>
+                        <li><a href="company/companySynchronized.html" target="content">Company Synchronized</a></li>
+                        <li><a href="company/companyData.html" target="content">Company Data</a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">数据采集进度</li>
-                        <li><a href="#">数据完整度分析</a></li>
-                        <li><a href="#">数据抽样分析</a></li>
+                        <li><a href="company/tradingCollect.html" target="content">Trading Collect</a></li>
+                        <li><a href="company/tradingCollectMonitor.html" target="content">Trading Collect Monitor</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="company/tradingDataAnalyze.html" target="content">Trading Data Analyze</a></li>
+                        <li><a href="company/tradingDataSamplingInspection.html" target="content">Trading Data Sampling Inspection</a></li>
                     </ul>
                 </li>
-                <li><a href="#about">市场分析</a></li>
-                <li><a href="#contact">综合信息</a></li>
-                <li><a href="#contact">自选个股</a></li>
+                <li><a href="#about">Trading Analyze</a></li>
+                <li><a href="#contact">Market Info</a></li>
+                <li><a href="#contact">Stock Mark</a></li>
             </ul>
             <!-- -->
             <div id="navbar_right_prosenal" class="collapse navbar-collapse">
@@ -73,7 +74,7 @@
                     <li><a href="#">baiyanwei</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">设置 <span class="caret"></span></a>
+                           aria-expanded="false">Profile <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">MENU_LEVEL_2</a></li>
                             <li><a href="#">MENU_LEVEL_2</a></li>
@@ -84,14 +85,13 @@
                             <li><a href="#">MENU_LEVEL_2</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">帮助</a></li>
+                    <li><a href="#">help</a></li>
                 </ul>
             </div>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 <div class="menu_navigate navbar-default">navigate>path>path_1</div>
-<div class="help_navigate navbar-fixed-top">help</div>
 <iframe id="content" name="content" frameborder="0" src="../content.html" onload="addEventListenerForTopMenu();"></iframe>
 <!-- Bootstrap core JavaScript
 ================================================== -->
