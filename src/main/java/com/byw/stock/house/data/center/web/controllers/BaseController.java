@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -31,11 +30,13 @@ import java.util.*;
  * @date 2014-5-30
  */
 public abstract class BaseController implements IController {
+    public static String FORWARD_MESSAGE="forward_message";
 
     /**
      * record the user or module operation logging in system.
      */
     protected AppSystemLogService _applicationLoggingService = null;
+    private String message;
 
     /**
      * 系统请求中session服务.
@@ -64,6 +65,15 @@ public abstract class BaseController implements IController {
     public HttpServletResponse getResponse() {
 
         return ServletActionContext.getResponse();
+    }
+
+    /**
+     * 在FOWARD时增加消息信息
+     * @param message
+     */
+    protected void setForwardMessage(String message){
+        this.message = message;
+        this.getRequest().setAttribute(FORWARD_MESSAGE,message);
     }
 
     /**
@@ -117,54 +127,6 @@ public abstract class BaseController implements IController {
         this.pushBackToClient(HttpStatus.OK, HttpContentType.HTML, message);
     }
 
-    /**
-     * 取得参数集盒.
-     *
-     * @return
-     * @throws UnsupportedEncodingException
-     */
-    public HashMap<String, String> getParameterMap() {
-
-        HttpServletRequest request = this.getRequest();
-        Enumeration<?> names = request.getParameterNames();
-        HashMap<String, String> formInputMap = new HashMap<String, String>();
-        while (names.hasMoreElements()) {
-            String key = names.nextElement().toString();
-            try {
-                formInputMap.put(key, request.getParameter(key) == null ? request.getParameter(key) : request.getParameter(key).trim());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        //
-
-        return replaceParamFilter(formInputMap, request);
-    }
-
-    /**
-     * 参数替换.
-     *
-     * @param formInputMap
-     * @param request
-     * @return
-     */
-    private HashMap<String, String> replaceParamFilter(HashMap<String, String> formInputMap, HttpServletRequest request) {
-
-        if (Assert.isEmptyMap(formInputMap) == true) {
-            return formInputMap;
-        }
-        if (formInputMap.containsKey("replace.application.current.user") == true) {
-            String replaceAppCurrentUser = formInputMap.get("replace.application.current.user");
-            if (Assert.isEmptyString(replaceAppCurrentUser) == false && formInputMap.containsKey(replaceAppCurrentUser) == false) {
-                try {
-                   // formInputMap.put(replaceAppCurrentUser, this.getCurrentUserByRequest(request).getId().toString());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return formInputMap;
-    }
 
     protected MultiPartRequestWrapper getMultiPartRequestWrapper(HttpServletRequest request) throws Exception {
 
@@ -287,4 +249,54 @@ public abstract class BaseController implements IController {
 //
 //        return this._httpSessionService.getCurrentUser(request);
 //    }
+
+    /**
+     * 参数替换.
+     *
+     * @param formInputMap
+     * @param request
+     * @return
+     */
+//    private HashMap<String, String> replaceParamFilter(HashMap<String, String> formInputMap, HttpServletRequest request) {
+//
+//        if (Assert.isEmptyMap(formInputMap) == true) {
+//            return formInputMap;
+//        }
+//        if (formInputMap.containsKey("replace.application.current.user") == true) {
+//            String replaceAppCurrentUser = formInputMap.get("replace.application.current.user");
+//            if (Assert.isEmptyString(replaceAppCurrentUser) == false && formInputMap.containsKey(replaceAppCurrentUser) == false) {
+//                try {
+//                    // formInputMap.put(replaceAppCurrentUser, this.getCurrentUserByRequest(request).getId().toString());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        return formInputMap;
+//    }
+
+//    /**
+//     * 取得参数集盒.
+//     *
+//     * @return
+//     * @throws UnsupportedEncodingException
+//     */
+//    public HashMap<String, String> getParameterMap() {
+//
+//        HttpServletRequest request = this.getRequest();
+//        Enumeration<?> names = request.getParameterNames();
+//        HashMap<String, String> formInputMap = new HashMap<String, String>();
+//        while (names.hasMoreElements()) {
+//            String key = names.nextElement().toString();
+//            try {
+//                formInputMap.put(key, request.getParameter(key) == null ? request.getParameter(key) : request.getParameter(key).trim());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        //
+//
+//        return replaceParamFilter(formInputMap, request);
+//    }
+
 }

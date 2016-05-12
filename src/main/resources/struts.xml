@@ -4,11 +4,12 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
     <constant name="struts.devMode" value="false"/>
     <constant name="struts.xslt.nocache" value="true"/>
-    <constant name="struts.action.excludePattern" value="/ajax/.*,/ajax/test/.*"/>
+    <constant name="struts.action.excludePattern" value="/*/*.html,/ajax/test/.*"/>
     <constant name="struts.action.extension" value="action"/>
     <constant name="struts.multipart.maxSize" value="15485760"/>
     <constant name="struts.multipart.saveDir" value="/home/hdfs/tss/run/storage/upload"/>
     <constant name="struts.objectFactory" value="spring"/>
+
 
     <!-- demo
     <package name="packageName" namespace="/AccessPrefixInURL" extends="struts-default,json-default">
@@ -27,6 +28,16 @@
         </action>
     </package>
     -->
+    <package name="app-base" namespace="/" extends="struts-default,json-default">
+        <global-results>
+            <result name="message">/message.jsp</result>
+            <result name="error">/message.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+    </package>
     <!-- App Module files -->
     <include file="module/sht-center-cfg-web-struts-module-application.xml"/>
+    <include file="module/sht-center-cfg-web-struts-module-data.xml"/>
 </struts>
