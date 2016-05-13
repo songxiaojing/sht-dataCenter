@@ -4,17 +4,14 @@ import java.io.File;
 
 
 /**
- * 
  * 上传文件信息对象.
- * 
+ * <p>
  * 上传文件信息对象.
- * 
+ *
+ * @author baiyanwei
  * @title UploadFile
  * @package com.topsec.tss.core.web.utils
- * @author baiyanwei
- * @version
  * @date 2014-6-26
- * 
  */
 public class UploadFile {
 
@@ -96,5 +93,10 @@ public class UploadFile {
     public void setClassName(String className) {
 
         this.className = className;
+    }
+
+    @Override
+    public String toString() {
+        return this.file.getAbsolutePath();
     }
 }

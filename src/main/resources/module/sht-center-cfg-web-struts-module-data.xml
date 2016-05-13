@@ -3,7 +3,7 @@
 <struts>
 	<!-- 系统中application 定义 -->
 	<package name="dataManager" namespace="/data/manager" extends="app-base">
-		<action name="import" class="CompanyManagerController" method="companyImport">
+		<action name="companyImport" class="CompanyManagerController" method="companyImport">
 		</action>
 	</package>
 </struts>

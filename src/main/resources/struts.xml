@@ -7,7 +7,7 @@
     <constant name="struts.action.excludePattern" value="/*/*.html,/ajax/test/.*"/>
     <constant name="struts.action.extension" value="action"/>
     <constant name="struts.multipart.maxSize" value="15485760"/>
-    <constant name="struts.multipart.saveDir" value="/home/hdfs/tss/run/storage/upload"/>
+    <constant name="struts.multipart.saveDir" value="../temp/upload"/>
     <constant name="struts.objectFactory" value="spring"/>
 
 

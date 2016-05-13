@@ -3,14 +3,6 @@
 <struts>
 	<!-- 系统中application 定义 -->
 	<package name="application" namespace="/app" extends="struts-default,json-default">
-		<global-results>
-			<result name="error">/WEB-INF/jsp/common/exception.jsp</result>
-			<result name="success">/index.html</result>
-			<result name="message">/WEB-INF/jsp/common/message.jsp</result>
-			<result name="lossUser">/login.jsp</result>
-		</global-results>
-		<action name="appView.*" class="ApplicationView" method="{1}">
-			<result name="online">/index.html</result>
-		</action>
+
 	</package>
 </struts>

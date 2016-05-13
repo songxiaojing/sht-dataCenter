@@ -1,6 +1,5 @@
 package com.byw.stock.house.data.center.web.controllers;
 
-import com.byw.stock.house.data.center.platform.services.AppSystemLogService;
 import com.byw.stock.house.data.center.web.utils.UploadFile;
 import com.byw.stock.house.data.center.web.utils.http.HttpContentType;
 import com.byw.stock.house.platform.core.utils.Assert;
@@ -30,17 +29,8 @@ import java.util.*;
  * @date 2014-5-30
  */
 public abstract class BaseController implements IController {
+
     public static String FORWARD_MESSAGE="forward_message";
-
-    /**
-     * record the user or module operation logging in system.
-     */
-    protected AppSystemLogService _applicationLoggingService = null;
-    private String message;
-
-    /**
-     * 系统请求中session服务.
-     */
 
 
     protected String getLogOperateTime() {
@@ -72,7 +62,6 @@ public abstract class BaseController implements IController {
      * @param message
      */
     protected void setForwardMessage(String message){
-        this.message = message;
         this.getRequest().setAttribute(FORWARD_MESSAGE,message);
     }
 
@@ -275,28 +264,27 @@ public abstract class BaseController implements IController {
 //        return formInputMap;
 //    }
 
-//    /**
-//     * 取得参数集盒.
-//     *
-//     * @return
-//     * @throws UnsupportedEncodingException
-//     */
-//    public HashMap<String, String> getParameterMap() {
-//
-//        HttpServletRequest request = this.getRequest();
-//        Enumeration<?> names = request.getParameterNames();
-//        HashMap<String, String> formInputMap = new HashMap<String, String>();
-//        while (names.hasMoreElements()) {
-//            String key = names.nextElement().toString();
-//            try {
-//                formInputMap.put(key, request.getParameter(key) == null ? request.getParameter(key) : request.getParameter(key).trim());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        //
-//
-//        return replaceParamFilter(formInputMap, request);
-//    }
+    /**
+     * 取得参数集盒.
+     *
+     * @return
+     */
+    public HashMap<String, String> getParameterMap() {
+
+        HttpServletRequest request = this.getRequest();
+        Enumeration<?> names = request.getParameterNames();
+        HashMap<String, String> formInputMap = new HashMap<String, String>();
+        while (names.hasMoreElements()) {
+            String key = names.nextElement().toString();
+            try {
+                formInputMap.put(key, request.getParameter(key) == null ? request.getParameter(key) : request.getParameter(key).trim());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //
+
+        return formInputMap;
+    }
 
 }
